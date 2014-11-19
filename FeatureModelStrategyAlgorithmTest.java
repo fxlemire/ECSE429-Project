@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
 
 import static java.nio.file.StandardCopyOption.*;
 import junit.framework.TestCase;
@@ -26,6 +27,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fm.FeatureDiagram;
+import grl.impl.IntentionalElementRefImpl;
 import seg.jUCMNav.editors.UCMNavMultiPageEditor;
 import seg.jUCMNav.model.ModelCreationFactory;
 import ucm.map.ComponentRef;
@@ -108,21 +110,20 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
         compRef = (ComponentRef) ModelCreationFactory.getNewObject(urnspec, ComponentRef.class);
         start = (StartPoint) ModelCreationFactory.getNewObject(urnspec, StartPoint.class);
-        featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(0);
-        
         
         // cs = new CommandStack();
         cs = editor.getDelegatingCommandStack();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
-
 	@Test
-	public void testAutoSelectAllMandatoryFeatures() {
-		//fail("Not yet implemented");
+	public void test1() {
+		featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(19);
+		Iterator x = featureD.getNodes().iterator();
+		while(x.hasNext()) {
+			IntentionalElementRefImpl a = (IntentionalElementRefImpl) x.next();
+			System.out.println("jajajaja");
+		}
+		//.get(0).toString();
 	}
 
 //	@Test
