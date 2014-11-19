@@ -3,7 +3,11 @@ package seg.jUCMNav.tests;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import static java.nio.file.StandardCopyOption.*;
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IFile;
@@ -21,6 +25,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fm.FeatureDiagram;
 import seg.jUCMNav.editors.UCMNavMultiPageEditor;
 import seg.jUCMNav.model.ModelCreationFactory;
 import ucm.map.ComponentRef;
@@ -50,7 +55,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     public RespRef resp;
 
     public Connect connect;
-    public UCMmap map;
+    public FeatureDiagram featureD;
     public UCMmodelElement pathNodeWithLabel;
     public StartPoint start;
 
@@ -87,10 +92,12 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
             System.out.println("File found");
         }
 
-        //testfile.create(new ByteArrayInputStream("".getBytes()), false, null); //$NON-NLS-1$
+        testfile.create(new ByteArrayInputStream("".getBytes()), false, null); //$NON-NLS-1$
+        String workspace = workspaceRoot.getLocation().toString();
+        String rootLocation = workspace.substring(0, workspace.length() - 15);
+        Files.copy(Paths.get(rootLocation + "test_cases.jucm"), Paths.get(workspace + "/jUCMNav-tests/test_cases.jucm"), REPLACE_EXISTING);
+        testfile = testproject.getFile("test_cases.jucm"); //$NON-NLS-1$
         
-        
-
         IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
         IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(testfile.getName());
         editor = (UCMNavMultiPageEditor) page.openEditor(new FileEditorInput(testfile), desc.getId());
@@ -101,7 +108,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
         compRef = (ComponentRef) ModelCreationFactory.getNewObject(urnspec, ComponentRef.class);
         start = (StartPoint) ModelCreationFactory.getNewObject(urnspec, StartPoint.class);
-        map = (UCMmap) urnspec.getUrndef().getSpecDiagrams().get(0);
+        featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(0);
         
         
         // cs = new CommandStack();
@@ -115,7 +122,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
 	@Test
 	public void testAutoSelectAllMandatoryFeatures() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 //	@Test
