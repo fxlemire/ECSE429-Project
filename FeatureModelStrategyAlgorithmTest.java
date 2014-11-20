@@ -27,7 +27,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fm.FeatureDiagram;
+import fm.impl.FeatureImpl;
+import grl.ContributionContext;
+import grl.ElementLink;
 import grl.EvaluationStrategy;
+import grl.impl.ContributionImpl;
 import grl.impl.IntentionalElementRefImpl;
 import grl.impl.LinkRefImpl;
 import seg.jUCMNav.editors.UCMNavMultiPageEditor;
@@ -46,6 +50,7 @@ import ucm.map.WaitingPlace;
 import urn.URNspec;
 import urncore.Metadata;
 import urncore.UCMmodelElement;
+import urncore.impl.GRLmodelElementImpl;
 import urncore.impl.MetadataImpl;
 
 public class FeatureModelStrategyAlgorithmTest extends TestCase {
@@ -210,34 +215,46 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 		
 		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
 		
-		/* FEATURE TEST */
+		/* FEATURE NODES TEST */
 		Iterator elemItr = featureD.getNodes().iterator();
 		
 		while (elemItr.hasNext()) {
 			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
 
 			if (hasName(feature, ROOT, TABNUMBER)) {
-				checkNotSelected(feature);
+				checkPropagationSelected(feature);
+				
+//				assertEquals(0, featureWithLinks.getLinksSrc().size());
+//				assertEquals(2, featureWithLinks.getLinksDest().size());
+//				Iterator linkItr = featureWithLinks.getLinksDest().iterator();
+//				while (linkItr.hasNext()) {
+//					LinkRefImpl link = (LinkRefImpl) linkItr.next();
+//					ContributionImpl contLink = (ContributionImpl) link.getLink();
+//					int c = contLink.getQuantitativeContribution();
+//					assertEquals(50, c);
+//				}
 			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
-				fail(getFeatureName(PCHILD1, TABNUMBER) + " should not exist");
+				checkAutoSelectedWithoutWarning(feature);
 			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
-				fail(getFeatureName(PCHILD2, TABNUMBER) + " should not exist");
+				checkAutoSelectedWithoutWarning(feature);
 			} else if (hasName(feature, CHILD1, TABNUMBER)) {
-				fail(getFeatureName(CHILD1, TABNUMBER) + " should not exist");
+				checkAutoSelectedWithoutWarning(feature);
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
-				fail(getFeatureName(CHILD2, TABNUMBER) + " should not exist");
+				checkAutoSelectedWithoutWarning(feature);
 			} else {
 				fail(UNKNOWN_NODE);
 			}
 		}
 		
-		/* LINK TEST */
-	LinkRefImpl rPC1, rPC2, pCC1, pCC2;
-	elemItr = featureD.getConnections().iterator();
-	rPC1 = (LinkRefImpl) elemItr.next();
-	rPC2 = (LinkRefImpl) elemItr.next();
-	pCC1 = (LinkRefImpl) elemItr.next();
-	pCC2 = (LinkRefImpl) elemItr.next();
+//		// Get the links
+//	LinkRefImpl rPC1, rPC2, pCC1, pCC2;
+//	elemItr = featureD.getConnections().iterator();
+//	rPC1 = (LinkRefImpl) elemItr.next();
+//	ContributionImpl cont = (ContributionImpl) rPC1.getLabel();
+//	int c = cont.getQuantitativeContribution();
+//	rPC2 = (LinkRefImpl) elemItr.next();
+//	pCC1 = (LinkRefImpl) elemItr.next();
+//	pCC2 = (LinkRefImpl) elemItr.next();
     }
     
     @Test
@@ -269,69 +286,69 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
 	@Test
 	public void test20() {
-		final int TABNUMBER = 20;
-		
-		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
-		
-		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(NO_SELECTION);
-		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
-
-		// Get the feature nodes.
-		Iterator elemItr = featureD.getNodes().iterator();
-		
-		while (elemItr.hasNext()) {
-			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
-
-			if (hasName(feature, ROOT, TABNUMBER)) {
-
-			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
-				List metaItr = feature.getDef().getMetadata();
-				assertEquals(3, metaItr.size());
-				
-				metaItr.iterator();
-				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
-				assertTrue(numE.getName().equals("_numEval"));
-				assertTrue(numE.getValue().equals("100"));
-				
-				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
-				assertTrue(qualE.getName().equals("_qualEval"));
-				assertTrue(qualE.getValue().equals("Satisfied"));
-				
-				MetadataImpl autoS = (MetadataImpl) feature.getDef().getMetadata().get(2);
-				assertTrue(autoS.getName().equals("_autoSelected"));
-				
-				MetadataImpl warn = (MetadataImpl) feature.getDef().getMetadata().get(3);
-				assertTrue(warn == null);
-			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
-				
-			} else if (hasName(feature, CHILD1, TABNUMBER)) {
-				List metaItr = feature.getDef().getMetadata();
-				assertEquals(2, metaItr.size());
-				
-				metaItr.iterator();
-				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
-				assertTrue(numE.getName().equals("_numEval"));
-				assertTrue(numE.getValue().equals("0"));
-				
-				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
-				assertTrue(qualE.getName().equals("_qualEval"));
-				assertTrue(qualE.getValue().equals("None"));
-
-			} else if (hasName(feature, CHILD2, TABNUMBER)) {
-				
-			}
-		}
-
-		
-		// Get the links
-//		LinkRefImpl rPC1, rPC2, pCC1, pCC2;
-//		elemItr = featureD.getConnections().iterator();
-//		rPC1 = (LinkRefImpl) elemItr.next();
-//		rPC2 = (LinkRefImpl) elemItr.next();
-//		pCC1 = (LinkRefImpl) elemItr.next();
-//		pCC2 = (LinkRefImpl) elemItr.next();
-		
-		System.out.println("for break point");
+//		final int TABNUMBER = 20;
+//		
+//		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+//		
+//		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(NO_SELECTION);
+//		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+//
+//		// Get the feature nodes.
+//		Iterator elemItr = featureD.getNodes().iterator();
+//		
+//		while (elemItr.hasNext()) {
+//			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+//
+//			if (hasName(feature, ROOT, TABNUMBER)) {
+//
+//			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+//				List metaItr = feature.getDef().getMetadata();
+//				assertEquals(3, metaItr.size());
+//				
+//				metaItr.iterator();
+//				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
+//				assertTrue(numE.getName().equals("_numEval"));
+//				assertTrue(numE.getValue().equals("100"));
+//				
+//				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
+//				assertTrue(qualE.getName().equals("_qualEval"));
+//				assertTrue(qualE.getValue().equals("Satisfied"));
+//				
+//				MetadataImpl autoS = (MetadataImpl) feature.getDef().getMetadata().get(2);
+//				assertTrue(autoS.getName().equals("_autoSelected"));
+//				
+//				MetadataImpl warn = (MetadataImpl) feature.getDef().getMetadata().get(3);
+//				assertTrue(warn == null);
+//			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+//				
+//			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+//				List metaItr = feature.getDef().getMetadata();
+//				assertEquals(2, metaItr.size());
+//				
+//				metaItr.iterator();
+//				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
+//				assertTrue(numE.getName().equals("_numEval"));
+//				assertTrue(numE.getValue().equals("0"));
+//				
+//				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
+//				assertTrue(qualE.getName().equals("_qualEval"));
+//				assertTrue(qualE.getValue().equals("None"));
+//
+//			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+//				
+//			}
+//		}
+//
+//		
+//		// Get the links
+////		LinkRefImpl rPC1, rPC2, pCC1, pCC2;
+////		elemItr = featureD.getConnections().iterator();
+////		rPC1 = (LinkRefImpl) elemItr.next();
+////		rPC2 = (LinkRefImpl) elemItr.next();
+////		pCC1 = (LinkRefImpl) elemItr.next();
+////		pCC2 = (LinkRefImpl) elemItr.next();
+//		
+//		System.out.println("for break point");
 	}
 	
     private static void checkAutoSelectedWithWarning(IntentionalElementRefImpl feature) {
