@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
 
 import static java.nio.file.StandardCopyOption.*;
 import junit.framework.TestCase;
@@ -44,6 +45,7 @@ import ucm.map.Stub;
 import ucm.map.WaitingPlace;
 import urn.URNspec;
 import urncore.UCMmodelElement;
+import urncore.impl.MetadataImpl;
 
 public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
@@ -59,7 +61,6 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     public RespRef resp;
 
     public Connect connect;
-    public FeatureDiagram featureD;
     public UCMmodelElement pathNodeWithLabel;
     public StartPoint start;
 
@@ -126,13 +127,69 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
         StrategyEvaluationPreferences.setVisualizeAsPositiveRange(true);
         StrategyEvaluationPreferences.setFillElements(true);
         StrategyEvaluationPreferences.getPreferenceStore().setValue(StrategyEvaluationPreferences.PREF_AUTOSELECTMANDATORYFEATURES, true);
+        
+        //Set chosen algorithm
+        StrategyEvaluationPreferences.setAlgorithm(StrategyEvaluationPreferences.FEATURE_MODEL_ALGORITHM+ "");//Messages.getString("GeneralPreferencePage.GrlStrategiesElementAlgorithm.FeatureModelStrategyAlgorithm"));
+        StrategyEvaluationPreferences.setTolerance(0);
+        StrategyEvaluationPreferences.setVisualizeAsPositiveRange(true);
+        StrategyEvaluationPreferences.setFillElements(true);
+        
+        StrategyEvaluationPreferences.getPreferenceStore().setValue(StrategyEvaluationPreferences.PREF_AUTOSELECTMANDATORYFEATURES, true);
+        
+//        EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+//		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
 	}
+    
+    @Test
+    public void test1() {
+    	
+    }
+    
+    @Test
+    public void test2() {
+    	
+    }
+    
+    @Test
+    public void test3() {
+    	
+    }
+    
+    @Test
+    public void test4() {
+    	
+    }
+    
+    @Test
+    public void test5() {
+    	
+    }
+    
+    @Test
+    public void test6() {
+    	
+    }
+    
+    @Test
+    public void test7() {
+    	
+    }
+    
+    @Test
+    public void test8() {
+    	
+    }
+    
+    
 
 	@Test
-	public void test1() {
+	public void test20() {
 		final int TABNUMBER = 20;
 		
-		featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
 
 		// Get the feature nodes.
 		Iterator elemItr = featureD.getNodes().iterator();
@@ -141,20 +198,45 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
 
 			if (hasName(feature, ROOT, TABNUMBER)) {
-				
+
 			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				List metaItr = feature.getDef().getMetadata();
+				assertEquals(3, metaItr.size());
 				
+				metaItr.iterator();
+				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
+				assertTrue(numE.getName().equals("_numEval"));
+				assertTrue(numE.getValue().equals("100"));
+				
+				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
+				assertTrue(qualE.getName().equals("_qualEval"));
+				assertTrue(qualE.getValue().equals("Satisfied"));
+				
+				MetadataImpl autoS = (MetadataImpl) feature.getDef().getMetadata().get(2);
+				assertTrue(autoS.getName().equals("_autoSelected"));
+				
+				MetadataImpl warn = (MetadataImpl) feature.getDef().getMetadata().get(3);
+				assertTrue(warn == null);
 			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
 				
 			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				List metaItr = feature.getDef().getMetadata();
+				assertEquals(2, metaItr.size());
 				
+				metaItr.iterator();
+				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
+				assertTrue(numE.getName().equals("_numEval"));
+				assertTrue(numE.getValue().equals("0"));
+				
+				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
+				assertTrue(qualE.getName().equals("_qualEval"));
+				assertTrue(qualE.getValue().equals("None"));
+
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
 				
 			}
 		}
-		
-		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
-		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+
 		
 		// Get the links
 //		LinkRefImpl rPC1, rPC2, pCC1, pCC2;
