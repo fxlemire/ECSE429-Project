@@ -262,14 +262,110 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     }
     
     @Test
-    public void test4() {
-    	
-    }
+	public void test4() {
+		final int TABNUMBER = 4;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkPropagationSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				fail("PCHILD2_EXISTS");
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				fail("PCHILD2LINK_EXISTS");
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
     
     @Test
-    public void test5() {
-    	
-    }
+	public void test5() {
+		final int TABNUMBER = 5;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkPropagationSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				fail("PCHILD2_EXISTS");
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				fail("PCHILD2LINK_EXISTS");
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 0);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
     
     @Test
     public void test6() {
