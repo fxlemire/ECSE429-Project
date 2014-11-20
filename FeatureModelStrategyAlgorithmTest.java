@@ -32,6 +32,8 @@ import grl.ContributionContext;
 import grl.ElementLink;
 import grl.EvaluationStrategy;
 import grl.impl.ContributionImpl;
+import grl.impl.DecompositionImpl;
+import grl.impl.ElementLinkImpl;
 import grl.impl.IntentionalElementRefImpl;
 import grl.impl.LinkRefImpl;
 import seg.jUCMNav.editors.UCMNavMultiPageEditor;
@@ -103,6 +105,11 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     /** Errors */
     private final static String UNKNOWN_NODE = "Unknown node";
 
+    @BeforeClass
+    public void setUpClass() {
+    	
+    }
+    
     /*
      * @see TestCase#setUp()
      */
@@ -148,14 +155,6 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
         StrategyEvaluationPreferences.setTolerance(0);
         StrategyEvaluationPreferences.setVisualizeAsPositiveRange(true);
         StrategyEvaluationPreferences.setFillElements(true);
-        StrategyEvaluationPreferences.getPreferenceStore().setValue(StrategyEvaluationPreferences.PREF_AUTOSELECTMANDATORYFEATURES, true);
-        
-        //Set chosen algorithm
-        StrategyEvaluationPreferences.setAlgorithm(StrategyEvaluationPreferences.FEATURE_MODEL_ALGORITHM+ "");//Messages.getString("GeneralPreferencePage.GrlStrategiesElementAlgorithm.FeatureModelStrategyAlgorithm"));
-        StrategyEvaluationPreferences.setTolerance(0);
-        StrategyEvaluationPreferences.setVisualizeAsPositiveRange(true);
-        StrategyEvaluationPreferences.setFillElements(true);
-        
         StrategyEvaluationPreferences.getPreferenceStore().setValue(StrategyEvaluationPreferences.PREF_AUTOSELECTMANDATORYFEATURES, true);
 	}
     
@@ -282,16 +281,174 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     	
     }
     
-    
+    @Test
+	public void test16() {
+		final int TABNUMBER = 16;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
 
-	@Test
-	public void test20() {
-//		final int TABNUMBER = 20;
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				fail("This diagram should not have a pChild2 node.");
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail("An invalid nodes exists on the diagram.");
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				fail("This diagram should not have a link to pChild2");
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else {
+				fail("An invalid link exists on the diagram");
+			}
+		}
+	}
+    
+    @Test
+	public void test17() {
+		final int TABNUMBER = 17;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkPropagationSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else {
+				fail("An invalid nodes exists on the diagram.");
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else {
+				fail("An invalid link exists on the diagram");
+			}
+		}
+	}
+    
+    @Test
+	public void test18() {
+		final int TABNUMBER = 18;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkPropagationSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail("An invalid nodes exists on the diagram.");
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else {
+				fail("An invalid link exists on the diagram");
+			}
+		}
+	}
+    
+//    //COPY PASTE THIS CASE AND FIX AT THE END
+//    @Test
+//	public void test19() {
+//		final int TABNUMBER = 19;
+//		
+//		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+//		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
 //		
 //		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
-//		
-//		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(NO_SELECTION);
-//		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
 //
 //		// Get the feature nodes.
 //		Iterator elemItr = featureD.getNodes().iterator();
@@ -300,55 +457,113 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 //			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
 //
 //			if (hasName(feature, ROOT, TABNUMBER)) {
-//
+//				checkPropagationSelected(feature);
+//				checkNotSelected(feature);
 //			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
-//				List metaItr = feature.getDef().getMetadata();
-//				assertEquals(3, metaItr.size());
-//				
-//				metaItr.iterator();
-//				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
-//				assertTrue(numE.getName().equals("_numEval"));
-//				assertTrue(numE.getValue().equals("100"));
-//				
-//				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
-//				assertTrue(qualE.getName().equals("_qualEval"));
-//				assertTrue(qualE.getValue().equals("Satisfied"));
-//				
-//				MetadataImpl autoS = (MetadataImpl) feature.getDef().getMetadata().get(2);
-//				assertTrue(autoS.getName().equals("_autoSelected"));
-//				
-//				MetadataImpl warn = (MetadataImpl) feature.getDef().getMetadata().get(3);
-//				assertTrue(warn == null);
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
 //			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
-//				
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
+//				fail("This diagram should not have a pChild2 node.");
 //			} else if (hasName(feature, CHILD1, TABNUMBER)) {
-//				List metaItr = feature.getDef().getMetadata();
-//				assertEquals(2, metaItr.size());
-//				
-//				metaItr.iterator();
-//				MetadataImpl numE = (MetadataImpl) feature.getDef().getMetadata().get(0);
-//				assertTrue(numE.getName().equals("_numEval"));
-//				assertTrue(numE.getValue().equals("0"));
-//				
-//				MetadataImpl qualE = (MetadataImpl) feature.getDef().getMetadata().get(1);
-//				assertTrue(qualE.getName().equals("_qualEval"));
-//				assertTrue(qualE.getValue().equals("None"));
-//
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
 //			} else if (hasName(feature, CHILD2, TABNUMBER)) {
-//				
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
+//			} else {
+//				fail("An invalid nodes exists on the diagram.");
 //			}
 //		}
+//		
+//		// Get the links.
+//		elemItr = featureD.getConnections().iterator();
+//		
+//		while (elemItr.hasNext()) {
+//			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+//			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
 //
-//		
-//		// Get the links
-////		LinkRefImpl rPC1, rPC2, pCC1, pCC2;
-////		elemItr = featureD.getConnections().iterator();
-////		rPC1 = (LinkRefImpl) elemItr.next();
-////		rPC2 = (LinkRefImpl) elemItr.next();
-////		pCC1 = (LinkRefImpl) elemItr.next();
-////		pCC2 = (LinkRefImpl) elemItr.next();
-//		
-//		System.out.println("for break point");
+//			FeatureImpl src = (FeatureImpl) link.getSrc();
+//			FeatureImpl dest = (FeatureImpl) link.getDest();
+//			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//				fail("This diagram should not have a link to pChild2");
+//			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//			} else {
+//				fail("An invalid link exists on the diagram");
+//			}
+//		}
+//	}
+
+    @Test
+	public void test20() {
+		final int TABNUMBER = 20;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkPropagationSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkAutoSelectedWithoutWarning(feature);
+			} else {
+				fail("An invalid nodes exists on the diagram.");
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 0);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else {
+				fail("An invalid link exists on the diagram");
+			}
+		}
 	}
 	
     private static void checkAutoSelectedWithWarning(IntentionalElementRefImpl feature) {
@@ -369,6 +584,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     
     private static void checkFeatureMetadata(IntentionalElementRefImpl feature, boolean numEval, String numEvalValue,
     		boolean qualEval, String qualEvalValue, boolean autoSelection, boolean warning, String warningValue) {
+    	
     	boolean numExists = false;
 		boolean qualExists = false;
 		boolean autoExists = false;
@@ -399,6 +615,28 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 		assertEquals(autoSelection, autoExists);
 		assertEquals(warning, warnExists);
     }
+    
+    private static void checkDecompositionLink(ElementLinkImpl pLink) {
+		if (pLink instanceof DecompositionImpl) {
+			DecompositionImpl decompLink = (DecompositionImpl) pLink;
+			assertNotNull(decompLink);
+		} else if (pLink instanceof ContributionImpl) {
+			fail(pLink.getName() + " should be a Decomposition link but is a Contribution link.");
+		} else {
+			fail(pLink.getName() + " is neither a Decomposition or Contribution link.");
+		}
+    }
+    
+    private static void checkContributionLink(ElementLinkImpl pLink, int pContribValue) {
+    	if (pLink instanceof ContributionImpl) {
+			ContributionImpl contribLink = (ContributionImpl) pLink;
+			assertEquals(pContribValue, contribLink.getQuantitativeContribution());
+		} else if (pLink instanceof DecompositionImpl) {
+			fail(pLink.getName() + " should be a Contribution link but is a Decomposition link.");
+		} else {
+			fail(pLink.getName() + " is neither a Decomposition or Contribution link.");
+		}
+    }
 	
 	private static String getFeatureName(String featureName, int diagramTabNumber) {
 		return featureName + diagramTabNumber;
@@ -406,6 +644,10 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 	
 	private static boolean hasName(IntentionalElementRefImpl feature, String featureName, int diagramTabNumber) {
 		return feature.getDef().getName().equals(getFeatureName(featureName, diagramTabNumber));
+	}
+	
+	private static boolean hasName(FeatureImpl feature, String featureName, int diagramTabNumber) {
+		return feature.getName().equals(getFeatureName(featureName, diagramTabNumber));
 	}
 	
 	private static boolean isNumEval(String name) {
