@@ -103,7 +103,10 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     private final static String WARNING_MSG = "100 != 0";
     
     /** Errors */
-    private final static String UNKNOWN_NODE = "Unknown node";
+    private final static String UNKNOWN_NODE = "An unknown node exists on the diagram.";
+    private final static String UNKNOWN_LINK = "An unknown link exists on the diagram.";
+    private final static String PCHILD2_EXISTS = "This diagram should not have a pChild2 node.";
+    private final static String PCHILD2LINK_EXISTS = "This diagram should not have a link to pChild2.";
 
     @BeforeClass
     public void setUpClass() {
@@ -301,13 +304,13 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
-				fail("This diagram should not have a pChild2 node.");
+				fail(PCHILD2_EXISTS);
 			} else if (hasName(feature, CHILD1, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else {
-				fail("An invalid nodes exists on the diagram.");
+				fail(UNKNOWN_NODE);
 			}
 		}
 		
@@ -323,7 +326,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
 				checkContributionLink(link, 100);
 			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
-				fail("This diagram should not have a link to pChild2");
+				fail(PCHILD2LINK_EXISTS);
 			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
 				checkDecompositionLink(link);
 			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
@@ -467,7 +470,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 //				checkAutoSelectedWithoutWarning(feature);
 //				checkAutoSelectedWithWarning(feature);
 //				checkNotSelected(feature);
-//				fail("This diagram should not have a pChild2 node.");
+//				fail("PCHILD2_EXISTS");
 //			} else if (hasName(feature, CHILD1, TABNUMBER)) {
 //				checkAutoSelectedWithoutWarning(feature);
 //				checkAutoSelectedWithWarning(feature);
@@ -498,7 +501,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 //				checkDecompositionLink(link);
 //				checkContributionLink(link, 0);
 //				checkContributionLink(link, 100);
-//				fail("This diagram should not have a link to pChild2");
+//				fail("PCHILD2LINK_EXISTS");
 //			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
 //				checkDecompositionLink(link);
 //				checkContributionLink(link, 0);
