@@ -225,16 +225,6 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
 			if (hasName(feature, ROOT, TABNUMBER)) {
 				checkPropagationSelected(feature);
-				
-//				assertEquals(0, featureWithLinks.getLinksSrc().size());
-//				assertEquals(2, featureWithLinks.getLinksDest().size());
-//				Iterator linkItr = featureWithLinks.getLinksDest().iterator();
-//				while (linkItr.hasNext()) {
-//					LinkRefImpl link = (LinkRefImpl) linkItr.next();
-//					ContributionImpl contLink = (ContributionImpl) link.getLink();
-//					int c = contLink.getQuantitativeContribution();
-//					assertEquals(50, c);
-//				}
 			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
 				checkAutoSelectedWithoutWarning(feature);
 			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
@@ -248,15 +238,27 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			}
 		}
 		
-//		// Get the links
-//	LinkRefImpl rPC1, rPC2, pCC1, pCC2;
-//	elemItr = featureD.getConnections().iterator();
-//	rPC1 = (LinkRefImpl) elemItr.next();
-//	ContributionImpl cont = (ContributionImpl) rPC1.getLabel();
-//	int c = cont.getQuantitativeContribution();
-//	rPC2 = (LinkRefImpl) elemItr.next();
-//	pCC1 = (LinkRefImpl) elemItr.next();
-//	pCC2 = (LinkRefImpl) elemItr.next();
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
     }
     
     @Test
@@ -332,7 +334,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
 				checkDecompositionLink(link);
 			} else {
-				fail("An invalid link exists on the diagram");
+				fail(UNKNOWN_LINK);
 			}
 		}
 	}
@@ -363,7 +365,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
 				checkAutoSelectedWithoutWarning(feature);
 			} else {
-				fail("An invalid nodes exists on the diagram.");
+				fail(UNKNOWN_NODE);
 			}
 		}
 		
@@ -385,7 +387,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
 				checkContributionLink(link, 50);
 			} else {
-				fail("An invalid link exists on the diagram");
+				fail(UNKNOWN_LINK);
 			}
 		}
 	}
@@ -416,7 +418,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else {
-				fail("An invalid nodes exists on the diagram.");
+				fail(UNKNOWN_NODE);
 			}
 		}
 		
@@ -438,7 +440,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
 				checkContributionLink(link, 100);
 			} else {
-				fail("An invalid link exists on the diagram");
+				fail(UNKNOWN_LINK);
 			}
 		}
 	}
@@ -480,7 +482,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 //				checkAutoSelectedWithWarning(feature);
 //				checkNotSelected(feature);
 //			} else {
-//				fail("An invalid nodes exists on the diagram.");
+//				fail(UNKNOWN_NODE);
 //			}
 //		}
 //		
@@ -511,7 +513,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 //				checkContributionLink(link, 0);
 //				checkContributionLink(link, 100);
 //			} else {
-//				fail("An invalid link exists on the diagram");
+//				fail(UNKNOWN_LINK);
 //			}
 //		}
 //	}
@@ -542,7 +544,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
 				checkAutoSelectedWithoutWarning(feature);
 			} else {
-				fail("An invalid nodes exists on the diagram.");
+				fail(UNKNOWN_NODE);
 			}
 		}
 		
@@ -564,7 +566,7 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
 				checkContributionLink(link, 100);
 			} else {
-				fail("An invalid link exists on the diagram");
+				fail(UNKNOWN_LINK);
 			}
 		}
 	}
