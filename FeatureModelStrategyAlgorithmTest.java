@@ -28,8 +28,11 @@ import org.junit.Test;
 
 import fm.FeatureDiagram;
 import grl.impl.IntentionalElementRefImpl;
+import grl.impl.LinkRefImpl;
+import seg.jUCMNav.Messages;
 import seg.jUCMNav.editors.UCMNavMultiPageEditor;
 import seg.jUCMNav.model.ModelCreationFactory;
+import seg.jUCMNav.views.preferences.StrategyEvaluationPreferences;
 import ucm.map.ComponentRef;
 import ucm.map.Connect;
 import ucm.map.EndPoint;
@@ -42,6 +45,7 @@ import ucm.map.UCMmap;
 import ucm.map.WaitingPlace;
 import urn.URNspec;
 import urncore.UCMmodelElement;
+import urncore.impl.MetadataImpl;
 
 public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
@@ -113,17 +117,45 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
         
         // cs = new CommandStack();
         cs = editor.getDelegatingCommandStack();
+        
+        //Set chosen algorithm
+        StrategyEvaluationPreferences.setAlgorithm(Messages.getString("GeneralPreferencePage.GrlStrategiesElementAlgorithm.FeatureModelStrategyAlgorithm"));
+        StrategyEvaluationPreferences.setTolerance(0);
+        StrategyEvaluationPreferences.setVisualizeAsPositiveRange(true);
+        StrategyEvaluationPreferences.setFillElements(true);
 	}
 
 	@Test
 	public void test1() {
 		featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(19);
-		Iterator x = featureD.getNodes().iterator();
-		while(x.hasNext()) {
-			IntentionalElementRefImpl a = (IntentionalElementRefImpl) x.next();
-			System.out.println("jajajaja");
-		}
-		//.get(0).toString();
+//		Iterator featureItr = featureD.getNodes().iterator();
+//		featureD.getNodes().get(0);
+//		while(featureItr.hasNext()) {
+//			IntentionalElementRefImpl a = (IntentionalElementRefImpl) featureItr.next();
+//			System.out.println("jajajaja");
+//		}
+		// Get the feature nodes.
+		IntentionalElementRefImpl root, pChild1, pChild2, child1, child2;
+		Iterator elemItr = featureD.getNodes().iterator();
+		root = (IntentionalElementRefImpl) elemItr.next();
+		pChild1 = (IntentionalElementRefImpl) elemItr.next();
+		pChild2 = (IntentionalElementRefImpl) elemItr.next();
+		child1 = (IntentionalElementRefImpl) elemItr.next();
+		child2 = (IntentionalElementRefImpl) elemItr.next();
+		
+		MetadataImpl autoS = (MetadataImpl) pChild1.getDef().getMetadata().get(0);
+		assertTrue(autoS.getName().equals("_autoSelected"));
+		
+		// Get the links
+		LinkRefImpl rPC1, rPC2, pCC1, pCC2;
+		elemItr = featureD.getConnections().iterator();
+		rPC1 = (LinkRefImpl) elemItr.next();
+		rPC2 = (LinkRefImpl) elemItr.next();
+		pCC1 = (LinkRefImpl) elemItr.next();
+		pCC2 = (LinkRefImpl) elemItr.next();
+		
+		//assertTrue(pCC1.getMetadata())
+
 	}
 
 //	@Test
