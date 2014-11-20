@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 
@@ -27,11 +26,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fm.FeatureDiagram;
+import grl.EvaluationStrategy;
 import grl.impl.IntentionalElementRefImpl;
 import grl.impl.LinkRefImpl;
-import seg.jUCMNav.Messages;
 import seg.jUCMNav.editors.UCMNavMultiPageEditor;
 import seg.jUCMNav.model.ModelCreationFactory;
+import seg.jUCMNav.strategies.EvaluationStrategyManager;
 import seg.jUCMNav.views.preferences.StrategyEvaluationPreferences;
 import ucm.map.ComponentRef;
 import ucm.map.Connect;
@@ -41,11 +41,9 @@ import ucm.map.PluginBinding;
 import ucm.map.RespRef;
 import ucm.map.StartPoint;
 import ucm.map.Stub;
-import ucm.map.UCMmap;
 import ucm.map.WaitingPlace;
 import urn.URNspec;
 import urncore.UCMmodelElement;
-import urncore.impl.MetadataImpl;
 
 public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
@@ -75,6 +73,12 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     public IFile testfile;
 
     public URNspec urnspec;
+    
+    private final static String ROOT = "Root_";
+    private final static String PCHILD1 = "PChild1_";
+    private final static String PCHILD2 = "PChild2_";
+    private final static String CHILD1 = "Child1_";
+    private final static String CHILD2 = "Child2_";
 
     /*
      * @see TestCase#setUp()
@@ -110,8 +114,6 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
         // generate a top level model element
         urnspec = editor.getModel();
-        // urnspec = (URNspec) ModelCreationFactory.getNewURNspec();
-
         compRef = (ComponentRef) ModelCreationFactory.getNewObject(urnspec, ComponentRef.class);
         start = (StartPoint) ModelCreationFactory.getNewObject(urnspec, StartPoint.class);
         
@@ -119,57 +121,53 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
         cs = editor.getDelegatingCommandStack();
         
         //Set chosen algorithm
-        StrategyEvaluationPreferences.setAlgorithm(Messages.getString("GeneralPreferencePage.GrlStrategiesElementAlgorithm.FeatureModelStrategyAlgorithm"));
+        StrategyEvaluationPreferences.setAlgorithm(String.valueOf(StrategyEvaluationPreferences.FEATURE_MODEL_ALGORITHM));
         StrategyEvaluationPreferences.setTolerance(0);
         StrategyEvaluationPreferences.setVisualizeAsPositiveRange(true);
         StrategyEvaluationPreferences.setFillElements(true);
+        StrategyEvaluationPreferences.getPreferenceStore().setValue(StrategyEvaluationPreferences.PREF_AUTOSELECTMANDATORYFEATURES, true);
 	}
 
 	@Test
 	public void test1() {
-		featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(19);
-//		Iterator featureItr = featureD.getNodes().iterator();
-//		featureD.getNodes().get(0);
-//		while(featureItr.hasNext()) {
-//			IntentionalElementRefImpl a = (IntentionalElementRefImpl) featureItr.next();
-//			System.out.println("jajajaja");
-//		}
-		// Get the feature nodes.
-		IntentionalElementRefImpl root, pChild1, pChild2, child1, child2;
-		Iterator elemItr = featureD.getNodes().iterator();
-		root = (IntentionalElementRefImpl) elemItr.next();
-		pChild1 = (IntentionalElementRefImpl) elemItr.next();
-		pChild2 = (IntentionalElementRefImpl) elemItr.next();
-		child1 = (IntentionalElementRefImpl) elemItr.next();
-		child2 = (IntentionalElementRefImpl) elemItr.next();
+		final int TABNUMBER = 20;
 		
-		MetadataImpl autoS = (MetadataImpl) pChild1.getDef().getMetadata().get(0);
-		assertTrue(autoS.getName().equals("_autoSelected"));
+		featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				
+			}
+		}
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
 		
 		// Get the links
-		LinkRefImpl rPC1, rPC2, pCC1, pCC2;
-		elemItr = featureD.getConnections().iterator();
-		rPC1 = (LinkRefImpl) elemItr.next();
-		rPC2 = (LinkRefImpl) elemItr.next();
-		pCC1 = (LinkRefImpl) elemItr.next();
-		pCC2 = (LinkRefImpl) elemItr.next();
+//		LinkRefImpl rPC1, rPC2, pCC1, pCC2;
+//		elemItr = featureD.getConnections().iterator();
+//		rPC1 = (LinkRefImpl) elemItr.next();
+//		rPC2 = (LinkRefImpl) elemItr.next();
+//		pCC1 = (LinkRefImpl) elemItr.next();
+//		pCC2 = (LinkRefImpl) elemItr.next();
 		
-		//assertTrue(pCC1.getMetadata())
-
+		System.out.println("for break point");
 	}
-
-//	@Test
-//	public void testGetEvaluationType() {
-//		fail("Not yet implemented");
-//	}
-//	
-//	@Test
-//	public void testGetEvaluation() {
-//		fail("Not yet implemented");
-//	}
-//	
-//	@Test
-//	public void testClearAllAutoSelectedFeatures() {
-//		fail("Not yet implemented");
-//	}
+	
+	private static boolean hasName(IntentionalElementRefImpl feature, String featureName, int diagramTabNumber) {
+		return feature.getDef().getName().equals(featureName + diagramTabNumber);
+	}
 }
