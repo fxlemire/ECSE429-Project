@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<urn:URNspec xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fm="http:///fm.ecore" xmlns:grl="http:///grl.ecore" xmlns:urn="http:///urn.ecore" name="URNspec" author="flemir" created="November 18, 2014 3:49:32 AM EST" modified="November 21, 2014 3:42:51 PM EST" specVersion="49" urnVersion="1.27" nextGlobalID="1937">
+<urn:URNspec xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fm="http:///fm.ecore" xmlns:grl="http:///grl.ecore" xmlns:urn="http:///urn.ecore" name="URNspec" author="flemir" created="November 18, 2014 3:49:32 AM EST" modified="November 21, 2014 4:31:23 PM EST" specVersion="50" urnVersion="1.27" nextGlobalID="1937">
   <ucmspec>
     <scenarioGroups name="ScenarioGroup5" id="5">
       <scenarios name="ScenarioDef6" id="6"/>
@@ -17,12 +17,12 @@
     <intElements xsi:type="fm:Feature" name="PChild1_3" id="19" linksDest="94 95" linksSrc="25" type="Task" refs="20">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_3" id="21" linksSrc="95" type="Task" refs="22">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_4" id="29" linksDest="41" type="Task" refs="30">
       <metadata name="_numEval" value="100"/>
@@ -31,7 +31,7 @@
     <intElements xsi:type="fm:Feature" name="PChild1_4" id="31" linksDest="43 44" linksSrc="41" type="Task" refs="32">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_4" id="33" linksSrc="44" type="Task" refs="34">
@@ -49,12 +49,12 @@
     <intElements xsi:type="fm:Feature" name="PChild1_5" id="49" linksDest="57 59" linksSrc="61" type="Task" refs="50">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_5" id="51" linksSrc="57" type="Task" refs="52">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_5" id="53" linksSrc="59" type="Task" refs="54">
       <metadata name="_numEval" value="0"/>
@@ -67,7 +67,7 @@
     <intElements xsi:type="fm:Feature" name="PChild1_6" id="66" linksDest="74 76" linksSrc="77" type="Task" refs="67">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_6" id="68" linksSrc="74" type="Task" refs="69">
       <metadata name="_numEval" value="0"/>
@@ -76,7 +76,7 @@
     <intElements xsi:type="fm:Feature" name="Child2_6" id="70" linksSrc="76" type="Task" refs="71">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_7" id="80" linksDest="97" type="Task" refs="81">
       <metadata name="_numEval" value="100"/>
@@ -85,22 +85,22 @@
     <intElements xsi:type="fm:Feature" name="PChild1_7" id="82" linksDest="99 100" linksSrc="97" type="Task" refs="83">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_7" id="84" linksSrc="99" type="Task" refs="85">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_7" id="86" linksSrc="100" type="Task" refs="87">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_3" id="90" linksSrc="94" type="Task" refs="91">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_8" id="103" linksDest="116" type="Task" refs="104">
       <metadata name="_numEval" value="100"/>
@@ -109,7 +109,7 @@
     <intElements xsi:type="fm:Feature" name="PChild1_8" id="105" linksDest="113 114" linksSrc="116" type="Task" decompositionType="Xor" refs="106">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_8" id="107" linksSrc="113" type="Task" refs="108">
@@ -127,7 +127,7 @@
     <intElements xsi:type="fm:Feature" name="PChild1_9" id="121" linksDest="131 132" linksSrc="129" type="Task" decompositionType="Or" refs="122">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_9" id="123" linksSrc="131" type="Task" refs="124">
@@ -141,7 +141,7 @@
     <intElements xsi:type="fm:Feature" name="PChild2_3" id="135" linksSrc="139" type="Task" refs="136">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_10" id="141" linksDest="152" type="Task" refs="142">
       <metadata name="_numEval" value="0"/>
@@ -262,22 +262,22 @@
     <intElements xsi:type="fm:Feature" name="PChild1_17" id="258" linksDest="278 279" linksSrc="275" type="Task" refs="259">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_17" id="260" linksSrc="279" type="Task" refs="261">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_17" id="262" linksSrc="278" type="Task" refs="263">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_17" id="271" linksSrc="276" type="Task" refs="272">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_18" id="282" linksDest="294 295" type="Task" refs="283">
       <metadata name="_numEval" value="100"/>
@@ -286,13 +286,13 @@
     <intElements xsi:type="fm:Feature" name="PChild1_18" id="284" linksDest="297 299" linksSrc="294" type="Task" refs="285">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_18" id="286" linksSrc="295" type="Task" refs="287">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_18" id="288" linksSrc="297" type="Task" refs="289">
       <metadata name="_numEval" value="0"/>
@@ -309,17 +309,17 @@
     <intElements xsi:type="fm:Feature" name="PChild1_19" id="304" linksDest="317 319" linksSrc="314" type="Task" refs="305">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_19" id="306" linksSrc="315" type="Task" refs="307">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_19" id="308" linksSrc="317" type="Task" refs="309">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_19" id="310" linksSrc="319" type="Task" refs="311">
       <metadata name="_numEval" value="0"/>
@@ -332,12 +332,12 @@
     <intElements xsi:type="fm:Feature" name="PChild1_20" id="324" linksDest="337 339" linksSrc="334" type="Task" refs="325">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_20" id="326" linksSrc="335" type="Task" refs="327">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_20" id="328" linksSrc="337" type="Task" refs="329">
       <metadata name="_numEval" value="0"/>
@@ -346,7 +346,7 @@
     <intElements xsi:type="fm:Feature" name="Child2_20" id="330" linksSrc="339" type="Task" refs="331">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_21" id="342" linksDest="354 355" type="Task" refs="343">
       <metadata name="_numEval" value="100"/>
@@ -355,22 +355,22 @@
     <intElements xsi:type="fm:Feature" name="PChild1_21" id="344" linksDest="356 357" linksSrc="354" type="Task" refs="345">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_21" id="346" linksSrc="355" type="Task" refs="347">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_21" id="348" linksSrc="356" type="Task" refs="349">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_21" id="350" linksSrc="357" type="Task" refs="351">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_22" id="360" linksDest="372 373" type="Task" refs="361">
       <metadata name="_numEval" value="100"/>
@@ -379,13 +379,13 @@
     <intElements xsi:type="fm:Feature" name="PChild1_22" id="362" linksDest="374 375" linksSrc="372" type="Task" decompositionType="Xor" refs="363">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_22" id="364" linksSrc="373" type="Task" refs="365">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_22" id="366" linksSrc="374" type="Task" refs="367">
       <metadata name="_numEval" value="0"/>
@@ -402,13 +402,13 @@
     <intElements xsi:type="fm:Feature" name="PChild1_23" id="380" linksDest="392 393" linksSrc="390" type="Task" decompositionType="Or" refs="381">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_23" id="382" linksSrc="391" type="Task" refs="383">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_23" id="384" linksSrc="392" type="Task" refs="385">
       <metadata name="_numEval" value="0"/>
@@ -705,32 +705,32 @@
     <intElements xsi:type="fm:Feature" name="PChild1_38" id="681" linksSrc="693" type="Task" refs="682">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_38" id="683" linksSrc="694" type="Task" refs="684">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild3_38" id="685" linksSrc="695" type="Task" refs="686">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild4_38" id="687" linksSrc="696" type="Task" refs="688">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild5_38" id="689" linksSrc="697" type="Task" refs="690">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild6_38" id="691" linksSrc="698" type="Task" refs="692">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_39" id="720" linksDest="762 763" type="Task" decompositionType="Xor" refs="721">
       <metadata name="_numEval" value="0"/>
@@ -803,12 +803,12 @@
     <intElements xsi:type="fm:Feature" name="PChild1_41" id="1102" linksDest="1116 1118" linksSrc="1114" type="Task" refs="1103">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_41" id="1104" linksSrc="1116" type="Task" refs="1105">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_41" id="1106" linksSrc="1118" type="Task" refs="1107">
       <metadata name="_numEval" value="0"/>
@@ -821,22 +821,22 @@
     <intElements xsi:type="fm:Feature" name="PChild1_42" id="1122" linksDest="1134 1135" linksSrc="1132" type="Task" refs="1123">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_42" id="1124" linksSrc="1133" type="Task" refs="1125">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_42" id="1126" linksSrc="1134" type="Task" refs="1127">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_42" id="1128" linksSrc="1135" type="Task" refs="1129">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Root_43" id="1137" linksDest="1154 1155 1640" type="Task" refs="1138">
       <metadata name="_numEval" value="100"/>
@@ -845,28 +845,28 @@
     <intElements xsi:type="fm:Feature" name="PChild1_43" id="1139" linksDest="1156 1157 1632" linksSrc="1154" type="Task" refs="1140 1384">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="PChild2_43" id="1141" linksDest="1159 1161" linksSrc="1155" type="Task" refs="1142">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child1_43" id="1143" linksSrc="1156" type="Task" refs="1144">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child2_43" id="1145" linksSrc="1157" type="Task" refs="1146">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child3_43" id="1147" linksSrc="1159" type="Task" refs="1148">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child4_43" id="1149" linksDest="1634" linksSrc="1161" type="Task" refs="1150 1631">
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
@@ -892,7 +892,7 @@
     <intElements xsi:type="fm:Feature" name="PChild3_43" id="1636" linksDest="1648 1649 1742" linksSrc="1640" type="Task" decompositionType="Or" refs="1637 1740">
       <metadata name="_numEval" value="100"/>
       <metadata name="_qualEval" value="Satisfied"/>
-      <metadata name="_autoSelected" value="20141121-154247937"/>
+      <metadata name="_autoSelected" value="20141121-162749828"/>
       <metadata name="_userSetEvaluationWarning" value="100 != 0"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child5_43" id="1642" linksDest="1892" linksSrc="1648" type="Task" refs="1643 1891">
@@ -901,8 +901,8 @@
       <metadata name="_qualEval" value="Satisfied"/>
     </intElements>
     <intElements xsi:type="fm:Feature" name="Child6_43" id="1644" linksSrc="1649" type="Task" refs="1645">
-      <metadata name="_numEval" value="0"/>
-      <metadata name="_qualEval" value="None"/>
+      <metadata name="_numEval" value="100"/>
+      <metadata name="_qualEval" value="Satisfied"/>
     </intElements>
     <intElements name="DependTask" id="1932" linksSrc="1936" type="Task" refs="1933">
       <metadata name="_numEval" value="0"/>
@@ -1166,12 +1166,18 @@
       <evaluations evaluation="100" qualitativeEvaluation="Satisfied" intElement="1932">
         <kpiEvalValueSet/>
       </evaluations>
+      <evaluations evaluation="100" qualitativeEvaluation="Satisfied" intElement="1644">
+        <kpiEvalValueSet/>
+      </evaluations>
     </strategies>
     <strategies name="Goals_Not_Satisfied" id="1164" author="ivo" group="3">
       <evaluations evaluation="100" qualitativeEvaluation="Satisfied" intElement="1149">
         <kpiEvalValueSet/>
       </evaluations>
       <evaluations evaluation="100" qualitativeEvaluation="Satisfied" intElement="1642">
+        <kpiEvalValueSet/>
+      </evaluations>
+      <evaluations evaluation="100" qualitativeEvaluation="Satisfied" intElement="1644">
         <kpiEvalValueSet/>
       </evaluations>
     </strategies>
