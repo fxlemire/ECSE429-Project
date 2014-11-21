@@ -311,7 +311,6 @@ public class FeatureModelStrategyAlgorithmTest {
 				checkAutoSelectedWithoutWarning(feature);
 			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
 				checkAutoSelectedWithoutWarning(feature);
-				fail("PCHILD2_EXISTS");
 			} else if (hasName(feature, CHILD1, TABNUMBER)) {
 				checkAutoSelectedWithoutWarning(feature);
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
@@ -2826,7 +2825,6 @@ public class FeatureModelStrategyAlgorithmTest {
 				checkDecompositionLink(link);
 			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
 				checkDecompositionLink(link);
-				fail("PCHILD2LINK_EXISTS");
 			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
 				checkContributionLink(link, 100);
 			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
