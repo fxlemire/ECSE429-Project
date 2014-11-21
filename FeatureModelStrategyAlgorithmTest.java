@@ -55,22 +55,22 @@ import urncore.UCMmodelElement;
 import urncore.impl.GRLmodelElementImpl;
 import urncore.impl.MetadataImpl;
 
-public class FeatureModelStrategyAlgorithmTest extends TestCase {
+public class FeatureModelStrategyAlgorithmTest {
 
-	public static void main(String[] args) {
-        junit.textui.TestRunner.run(FeatureModelStrategyAlgorithmTest.class);
-    }
+//	public static void main(String[] args) {
+//        junit.textui.TestRunner.run(FeatureModelStrategyAlgorithmTest.class);
+//    }
     public UCMmodelElement componentRefWithLabel;
-    public ComponentRef compRef;
+    public static ComponentRef compRef;
     public ComponentRef compRef2;
-    public CommandStack cs;
-    public UCMNavMultiPageEditor editor;
+    public static CommandStack cs;
+    public static UCMNavMultiPageEditor editor;
     public EndPoint end;
     public RespRef resp;
 
     public Connect connect;
     public UCMmodelElement pathNodeWithLabel;
-    public StartPoint start;
+    public static StartPoint start;
 
     public Stub stub;
     public PluginBinding plugin;
@@ -79,9 +79,9 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 
     // during teardown, if testBindings==true, call verifyBindings()
     public boolean testBindings;
-    public IFile testfile;
+    public static IFile testfile;
 
-    public URNspec urnspec;
+    public static URNspec urnspec;
     
     /** Strategies */
     private final static int NO_SELECTION = 0;
@@ -116,16 +116,17 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
     private final static String PCHILD2_EXISTS = "This diagram should not have a pChild2 node.";
     private final static String PCHILD2LINK_EXISTS = "This diagram should not have a link to pChild2.";
 
-    @BeforeClass
-    public void setUpClass() {
-    	
-    }
+//    @BeforeClass
+//    public void setUpClass() {
+//    	
+//    }
     
     /*
      * @see TestCase#setUp()
      */
-    public void setUp() throws Exception {
-        super.setUp();
+    @BeforeClass
+    public static void setUpOnce() throws Exception {
+//        super.setUp();
     	
 		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
         IProject testproject = workspaceRoot.getProject("jUCMNav-tests"); //$NON-NLS-1$
