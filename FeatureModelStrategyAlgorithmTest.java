@@ -1340,7 +1340,749 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			}
 		}
 	}
-	
+    
+    @Test
+	public void test24() {
+		final int TABNUMBER = 24;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test25() {
+		final int TABNUMBER = 25;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test26() {
+		final int TABNUMBER = 26;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 0);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test27() {
+		final int TABNUMBER = 27;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 0);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test28() {
+		final int TABNUMBER = 28;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test29() {
+		final int TABNUMBER = 29;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test30() {
+		final int TABNUMBER = 30;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test31() {
+		final int TABNUMBER = 31;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 50);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test32() {
+		final int TABNUMBER = 32;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test33() {
+		final int TABNUMBER = 33;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 0);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test34() {
+		final int TABNUMBER = 34;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 0);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkContributionLink(link, 100);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test35() {
+		final int TABNUMBER = 35;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test36() {
+		final int TABNUMBER = 36;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
+    @Test
+	public void test37() {
+		final int TABNUMBER = 37;
+		
+		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+		
+		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+
+		// Get the feature nodes.
+		Iterator elemItr = featureD.getNodes().iterator();
+		
+		while (elemItr.hasNext()) {
+			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+
+			if (hasName(feature, ROOT, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+				checkNotSelected(feature);
+			} else {
+				fail(UNKNOWN_NODE);
+			}
+		}
+		
+		// Get the links.
+		elemItr = featureD.getConnections().iterator();
+		
+		while (elemItr.hasNext()) {
+			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+
+			FeatureImpl src = (FeatureImpl) link.getSrc();
+			FeatureImpl dest = (FeatureImpl) link.getDest();
+			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+				checkDecompositionLink(link);
+			} else {
+				fail(UNKNOWN_LINK);
+			}
+		}
+	}
+    
     private static void checkAutoSelectedWithWarning(IntentionalElementRefImpl feature) {
 		checkFeatureMetadata(feature, true, "100", true, QUALEVAL_SATISFIED, true, true, WARNING_MSG);
     }
