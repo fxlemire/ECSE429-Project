@@ -1055,79 +1055,6 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 			}
 		}
 	}
-    
-//    //COPY PASTE THIS CASE AND FIX AT THE END
-//    @Test
-//	public void test19() {
-//		final int TABNUMBER = 19;
-//		
-//		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
-//		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
-//		
-//		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
-//
-//		// Get the feature nodes.
-//		Iterator elemItr = featureD.getNodes().iterator();
-//		
-//		while (elemItr.hasNext()) {
-//			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
-//
-//			if (hasName(feature, ROOT, TABNUMBER)) {
-//				checkPropagationSelected(feature);
-//				checkNotSelected(feature);
-//			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
-//				checkAutoSelectedWithoutWarning(feature);
-//				checkAutoSelectedWithWarning(feature);
-//				checkNotSelected(feature);
-//			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
-//				checkAutoSelectedWithoutWarning(feature);
-//				checkAutoSelectedWithWarning(feature);
-//				checkNotSelected(feature);
-//				fail("PCHILD2_EXISTS");
-//			} else if (hasName(feature, CHILD1, TABNUMBER)) {
-//				checkAutoSelectedWithoutWarning(feature);
-//				checkAutoSelectedWithWarning(feature);
-//				checkNotSelected(feature);
-//			} else if (hasName(feature, CHILD2, TABNUMBER)) {
-//				checkAutoSelectedWithoutWarning(feature);
-//				checkAutoSelectedWithWarning(feature);
-//				checkNotSelected(feature);
-//			} else {
-//				fail(UNKNOWN_NODE);
-//			}
-//		}
-//		
-//		// Get the links.
-//		elemItr = featureD.getConnections().iterator();
-//		
-//		while (elemItr.hasNext()) {
-//			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
-//			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
-//
-//			FeatureImpl src = (FeatureImpl) link.getSrc();
-//			FeatureImpl dest = (FeatureImpl) link.getDest();
-//			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
-//				checkDecompositionLink(link);
-//				checkContributionLink(link, 0);
-//				checkContributionLink(link, 100);
-//			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
-//				checkDecompositionLink(link);
-//				checkContributionLink(link, 0);
-//				checkContributionLink(link, 100);
-//				fail("PCHILD2LINK_EXISTS");
-//			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
-//				checkDecompositionLink(link);
-//				checkContributionLink(link, 0);
-//				checkContributionLink(link, 100);
-//			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
-//				checkDecompositionLink(link);
-//				checkContributionLink(link, 0);
-//				checkContributionLink(link, 100);
-//			} else {
-//				fail(UNKNOWN_LINK);
-//			}
-//		}
-//	}
 
     @Test
 	public void test20() {
@@ -2182,4 +2109,77 @@ public class FeatureModelStrategyAlgorithmTest extends TestCase {
 	private static boolean isWarning(String name) {
 		return name.equals(WARNING);
 	}
+	
+//  //COPY PASTE THIS CASE AND FIX AT THE END
+//  @Test
+//	public void test19() {
+//		final int TABNUMBER = 19;
+//		
+//		EvaluationStrategy strategy = (EvaluationStrategy) urnspec.getGrlspec().getStrategies().get(0);
+//		EvaluationStrategyManager.getInstance(editor).setStrategy(strategy);
+//		
+//		FeatureDiagram featureD = (FeatureDiagram) urnspec.getUrndef().getSpecDiagrams().get(TABNUMBER - 1);
+//
+//		// Get the feature nodes.
+//		Iterator elemItr = featureD.getNodes().iterator();
+//		
+//		while (elemItr.hasNext()) {
+//			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
+//
+//			if (hasName(feature, ROOT, TABNUMBER)) {
+//				checkPropagationSelected(feature);
+//				checkNotSelected(feature);
+//			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
+//			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
+//				fail("PCHILD2_EXISTS");
+//			} else if (hasName(feature, CHILD1, TABNUMBER)) {
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
+//			} else if (hasName(feature, CHILD2, TABNUMBER)) {
+//				checkAutoSelectedWithoutWarning(feature);
+//				checkAutoSelectedWithWarning(feature);
+//				checkNotSelected(feature);
+//			} else {
+//				fail(UNKNOWN_NODE);
+//			}
+//		}
+//		
+//		// Get the links.
+//		elemItr = featureD.getConnections().iterator();
+//		
+//		while (elemItr.hasNext()) {
+//			LinkRefImpl linkRef  = (LinkRefImpl) elemItr.next();
+//			ElementLinkImpl link = (ElementLinkImpl) linkRef.getLink();
+//
+//			FeatureImpl src = (FeatureImpl) link.getSrc();
+//			FeatureImpl dest = (FeatureImpl) link.getDest();
+//			if (hasName(src, PCHILD1, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//			} else if (hasName(src, PCHILD2, TABNUMBER) && hasName(dest, ROOT, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//				fail("PCHILD2LINK_EXISTS");
+//			} else if (hasName(src, CHILD1, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//			} else if (hasName(src, CHILD2, TABNUMBER) && hasName(dest, PCHILD1, TABNUMBER)) {
+//				checkDecompositionLink(link);
+//				checkContributionLink(link, 0);
+//				checkContributionLink(link, 100);
+//			} else {
+//				fail(UNKNOWN_LINK);
+//			}
+//		}
+//	}
 }
