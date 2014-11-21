@@ -3788,11 +3788,11 @@ public class FeatureModelStrategyAlgorithmTest {
 			IntentionalElementRefImpl feature = (IntentionalElementRefImpl) elemItr.next();
 
 			if (hasName(feature, ROOT, TABNUMBER)) {
-				checkPropagationSelected(feature);
+				checkNotSelected(feature);
 			} else if (hasName(feature, PCHILD1, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else if (hasName(feature, PCHILD2, TABNUMBER)) {
-				checkAutoSelectedWithoutWarning(feature);
+				checkNotSelected(feature);
 			} else if (hasName(feature, PCHILD3, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else if (hasName(feature, CHILD1, TABNUMBER)) {
@@ -3800,13 +3800,13 @@ public class FeatureModelStrategyAlgorithmTest {
 			} else if (hasName(feature, CHILD2, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else if (hasName(feature, CHILD3, TABNUMBER)) {
-				checkAutoSelectedWithoutWarning(feature);
+				checkNotSelected(feature);
 			} else if (hasName(feature, CHILD4, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else if (hasName(feature, CHILD5, TABNUMBER)) {
 				checkNotSelected(feature);
 			} else if (hasName(feature, CHILD6, TABNUMBER)) {
-				checkUserSelected(feature);
+				checkNotSelected(feature);
 			} else {
 				fail(UNKNOWN_NODE);
 			}
