@@ -141,7 +141,6 @@ public class FeatureModelStrategyAlgorithmTest {
         // start with clean file
         if (testfile.exists()) {
             testfile.delete(true, false, null);
-            System.out.println("File found");
         }
 
         testfile.create(new ByteArrayInputStream("".getBytes()), false, null); //$NON-NLS-1$
